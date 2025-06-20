@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "The Rust Bucket Begins",
+      "author": "Francis the Mechanic",
+      "content": "Today marks the first step of my journey restoring a 1984 Toyota Land Cruiser. It's been sitting in my dad's shed for years, covered in dust and rust. The engine doesn’t start, and the body has seen better days, but I'm determined to bring it back to life. Let the teardown begin!",
+      "image": "https://i.imgur.com/z8bZyP0.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Engine Overhaul Weekend",
+      "author": "Francis the Mechanic",
+      "content": "Spent the entire weekend in the garage. Removed the old engine block — heavy as hell! Replaced piston rings, cleaned the valves, and swapped in a new camshaft. I documented everything with pictures and labeled each part meticulously. The goal: clean start and no leftover bolts!",
+      "image": "https://i.imgur.com/BVWJkVF.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Paint, Polish, and Pride",
+      "author": "Francis the Mechanic",
+      "content": "Bodywork is DONE! After hours of sanding, priming, and painting, the old Land Cruiser is now a shining forest green. Clear coat went on smoothly and gave it a nice gloss. It's amazing to see it slowly transforming from a wreck to a road-worthy machine.",
+      "image": "https://i.imgur.com/xK0MbW9.jpg"
+    }
+  ]
+}
