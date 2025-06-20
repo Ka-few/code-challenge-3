@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Manager</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Manager</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <header>
-        <h1>Full Stack developer journey</h1>
-    </header>
-    <div class="container">
-        <div id="post-list">        
-        </div>
-        <div id="post-display">
-            <h2>Select a post</h2>
-            <div id="post-content"></div>
-            <button id="new-post-btn">Add new</button>
-            
-            <form id="new-post-form">
-                <h3>Create New Post</h3>
-                <input type="text" id="title" placeholder="Title" required />
-                <input type="text" id="author" placeholder="Author" required />
-                <textarea id="content" placeholder="Content" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+  <header>
+    <h1>Full Stack Developer Journey</h1>
+  </header>
 
+  <div class="container">
+    <!-- Sidebar -->
+    <div id="post-list">
+      <h2>Select Post</h2>
+      <div id="posts-container"></div> <!-- Dynamic post list will go here -->
+
+      <button id="new-post-btn">Add New Post</button>
+
+      <form id="new-post-form">
+        <h3>Create New Post</h3>
+        <input type="text" id="title" placeholder="Title" required />
+        <input type="text" id="author" placeholder="Author" required />
+        <textarea id="content" placeholder="Content" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
     </div>
-    <script src="./index.js"></script>
+
+    <!-- Main content area -->
+    <div id="post-detail">
+      
+      <div id="post-content"></div>
+    </div>
+  </div>
+
+  <script src="./index.js"></script>
 </body>
 </html>
