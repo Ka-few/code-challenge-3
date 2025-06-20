@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Manager</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>Full Stack developer journey</h1>
+    </header>
+    <div class="container">
+        <div id="post-list">        
+        </div>
+        <div id="post-display">
+            <h2>Select a post</h2>
+            <div id="post-content"></div>
+            <button id="new-post-btn">Add new</button>
+            
+            <form id="new-post-form">
+                <h3>Create New Post</h3>
+                <input type="text" id="title" placeholder="Title" required />
+                <input type="text" id="author" placeholder="Author" required />
+                <textarea id="content" placeholder="Content" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
