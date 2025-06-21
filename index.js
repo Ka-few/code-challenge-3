@@ -31,6 +31,11 @@ function displayPosts(posts) {
     item.addEventListener('click', () => handlePostClick(post.id));
     postList.appendChild(item);
   });
+
+  // Display the first post on page load
+  if (posts.length > 0) {
+    handlePostClick(posts[0].id);
+  }
 }
 
 //Render the selected posts on the main display area
