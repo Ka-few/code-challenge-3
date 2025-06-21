@@ -48,7 +48,11 @@ function handlePostClick(id) {
         <p><strong>By:</strong> ${post.author}</p>
         ${post.image ? `<img src="${post.image}" alt="${post.title}" style="max-width: 100%; margin: 1rem 0;">` : ''}
         <p>${post.content}</p>
+        <button id="delete-btn" style="background-color: crimson; color: white; margin-top: 1rem;">Delete Post</button>
       `;
+
+      // Attach delete functionality
+      document.getElementById('delete-btn').addEventListener('click', () => deletePost(id));
     })
     .catch(error => {
       console.error('Error loading post:', error);
@@ -102,4 +106,26 @@ newPostBtn.addEventListener('click', () => {
 
 //display the form to create and submit a new blog post
 newPostForm.addEventListener('submit', addNewPostListener);
+
+// Delete an individual displayed post
+function deletePost(id) {
+  const confirmed = confirm('Are you sure you want to delete this post?');
+
+  if (!confirmed) return;
+
+  fetch(`http://localhost:3000/posts/${id}`, {
+    method: 'DELETE'
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Delete failed');
+      // Refresh post list
+      main();
+      postContent.innerHTML = '<p>Post deleted.</p>';
+    })
+    .catch(error => {
+      console.error('Error deleting post:', error);
+      alert('Failed to delete the post.');
+    });
+}
+
 
