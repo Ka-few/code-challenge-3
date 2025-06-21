@@ -10,6 +10,7 @@ const imageInput = document.getElementById('image');
 
 const postContent = document.getElementById('post-content');
 
+// Load posts on page load
 const main = function () {
   fetch('http://localhost:3000/posts')
     .then(response => response.json())
@@ -17,20 +18,36 @@ const main = function () {
     .catch(error => console.error('Error fetching posts:', error));
 };
 
-main(); // Run on page load
+main()
 
-
+// Render post titles in the sidebar
 function displayPosts(posts) {
-  const postsContainer = document.getElementById('posts-list');
-  postsContainer.innerHTML = '';
+  postList.innerHTML = '';
 
   posts.forEach(post => {
     const item = document.createElement('div');
     item.textContent = post.title;
     item.classList.add('post-item');
-    item.addEventListener('click', () => loadPost(post.id));
-    postsContainer.appendChild(item);
+    item.addEventListener('click', () => handlePostClick(post.id));
+    postList.appendChild(item);
   });
 }
 
-main()
+
+function handlePostClick(id) {
+  fetch(`http://localhost:3000/posts/${id}`)
+    .then(response => response.json())    
+    .then(post => {
+      postContent.innerHTML = `
+        <h2>${post.title}</h2>
+        <p><strong>By:</strong> ${post.author}</p>
+        ${post.image ? `<img src="${post.image}" alt="${post.title}" style="max-width: 100%; margin: 1rem 0;">` : ''}
+        <p>${post.content}</p>
+      `;
+    })
+    .catch(error => {
+      console.error('Error loading post:', error);
+      postContent.innerHTML = `<p style="color: red;">Failed to load post.</p>`;
+    });
+}
+
