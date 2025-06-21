@@ -33,7 +33,7 @@ function displayPosts(posts) {
   });
 }
 
-
+//Render the selected posts on the main display area
 function handlePostClick(id) {
   fetch(`http://localhost:3000/posts/${id}`)
     .then(response => response.json())    
@@ -50,4 +50,51 @@ function handlePostClick(id) {
       postContent.innerHTML = `<p style="color: red;">Failed to load post.</p>`;
     });
 }
+
+// addNewPostListener function for adding form data and posting data to JSON server
+const addNewPostListener = function (e) {
+  e.preventDefault(); // Prevent form from reloading the page
+
+  const newPost = {
+    title: titleInput.value,
+    author: authorInput.value,
+    content: contentInput.value,
+    image: imageInput.value
+  };
+
+  // Basic validation to ensure the user fills the recomended fields
+  if (!newPost.title || !newPost.author || !newPost.content) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  // Send POST request to JSON Server
+  fetch('http://localhost:3000/posts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newPost)
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Reset form
+      newPostForm.reset();
+      newPostForm.style.display = 'none';
+
+      // Refresh post list
+      main(); // Fetch posts again to include the new one
+    })
+    .catch(error => {
+      console.error('Error submitting post:', error);
+      alert('There was a problem saving your post.');
+    });
+}
+
+//add the add new button functionality
+newPostBtn.addEventListener('click', () => {
+  const isVisible = newPostForm.style.display === 'block';
+  newPostForm.style.display = isVisible ? 'none' : 'block';
+});
+
+//display the form to create and submit a new blog post
+newPostForm.addEventListener('submit', addNewPostListener);
 
