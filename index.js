@@ -15,7 +15,9 @@ const main = function () {
   fetch('http://localhost:3000/posts')
     .then(response => response.json())
     .then(posts => displayPosts(posts))
-    .catch(error => console.error('Error fetching posts:', error));
+    .catch(() => {
+      alert('Failed to load posts. Please try again later.');
+    })
 };
 
 main()
@@ -38,7 +40,7 @@ function displayPosts(posts) {
   }
 }
 
-//Render the selected posts on the main display area
+//Display the selected posts on the main display area
 function handlePostClick(id) {
   fetch(`http://localhost:3000/posts/${id}`)
     .then(response => response.json())    
@@ -51,12 +53,11 @@ function handlePostClick(id) {
         <button id="delete-btn" style="background-color: crimson; color: white; margin-top: 1rem;">Delete Post</button>
       `;
 
-      // Attach delete functionality
+      // Add delete functionality
       document.getElementById('delete-btn').addEventListener('click', () => deletePost(id));
     })
-    .catch(error => {
-      console.error('Error loading post:', error);
-      postContent.innerHTML = `<p style="color: red;">Failed to load post.</p>`;
+    .catch(() => {
+        postContent.innerHTML = `<p style="color: red;">Failed to load post.</p>`;
     });
 }
 
@@ -92,8 +93,7 @@ const addNewPostListener = function (e) {
       // Refresh post list
       main(); // Fetch posts again to include the new one
     })
-    .catch(error => {
-      console.error('Error submitting post:', error);
+    .catch(() => {
       alert('There was a problem saving your post.');
     });
 }
@@ -122,8 +122,7 @@ function deletePost(id) {
       main();
       postContent.innerHTML = '<p>Post deleted.</p>';
     })
-    .catch(error => {
-      console.error('Error deleting post:', error);
+    .catch(() => {
       alert('Failed to delete the post.');
     });
 }

@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 1,
-      "title": "The Rust Bucket Begins",
+      "title": "The Restoration Begins",
       "author": "Francis the car Doctor",
       "content": "Today marks the first step of my journey restoring a 1984 Toyota Land Cruiser. It's been sitting in my dad's shed for years, covered in dust and rust. The engine doesn’t start, and the body has seen better days, but I'm determined to bring it back to life. Let the teardown begin!",
       "image": "https://www.carjunction.com/car_images2/86139_98111/98111b_578x417.jpg"
@@ -36,10 +36,10 @@
       "id": 5
     },
     {
-      "title": "Installing the sunroof",
+      "title": "Repairing the sunroof",
       "author": "Francis the car Doctor",
       "content": "replacing the faulty sunroof",
-      "image": "https://media-r2.carsandbids.com/cdn-cgi/image/width=542,quality=70/8bbf0f64fbfad81f6867cff798d92495738b23a7/photos/r4qVdelP-0K4xOaN7Af-(edit).jpg?t=170917305665",
+      "image": "https://media-cdn.tripadvisor.com/media/photo-s/18/ac/91/30/land-cruiser-prado-with.jpg",
       "id": 6
     }
   ]
