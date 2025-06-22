@@ -8,7 +8,7 @@ const authorInput = document.getElementById('author');
 const contentInput = document.getElementById('content');
 const imageInput = document.getElementById('image');
 
-const postContent = document.getElementById('post-content');
+const postContent = document.getElementById('post-content');// The main display container
 
 // Load posts on page load
 const main = function () {
@@ -53,7 +53,7 @@ function handlePostClick(id) {
         <button id="delete-btn" style="background-color: crimson; color: white; margin-top: 1rem;">Delete Post</button>
       `;
 
-      // Add delete functionality
+      // Add delete event to the created delete button
       document.getElementById('delete-btn').addEventListener('click', () => deletePost(id));
     })
     .catch(() => {
@@ -88,7 +88,7 @@ const addNewPostListener = function (e) {
     .then(data => {
       // Reset form
       newPostForm.reset();
-      newPostForm.style.display = 'none';
+      newPostForm.style.display = 'none'; //hide form 
 
       // Refresh post list
       main(); // Fetch posts again to include the new one
@@ -98,13 +98,13 @@ const addNewPostListener = function (e) {
     });
 }
 
-//add the add new button functionality
+//add the add new button functionality and toogle the new-post-form visibility
 newPostBtn.addEventListener('click', () => {
   const isVisible = newPostForm.style.display === 'block';
   newPostForm.style.display = isVisible ? 'none' : 'block';
 });
 
-//display the form to create and submit a new blog post
+// submit a new blog post
 newPostForm.addEventListener('submit', addNewPostListener);
 
 // Delete an individual displayed post
