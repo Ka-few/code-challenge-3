@@ -1,14 +1,14 @@
-const postList = document.getElementById('posts-list'); // container for post titles
-const newPostBtn = document.getElementById('new-post-btn');  // "Add new" button
-const newPostForm = document.getElementById('new-post-form'); // the form container
+let postList = document.getElementById('posts-list'); // container for post titles
+let newPostBtn = document.getElementById('new-post-btn');  // "Add new" button
+let newPostForm = document.getElementById('new-post-form'); // the form container
 
 //Select the form inputs
-const titleInput = document.getElementById('title');
-const authorInput = document.getElementById('author');
-const contentInput = document.getElementById('content');
-const imageInput = document.getElementById('image');
+let titGet = document.getElementById('title');
+let authGet = document.getElementById('author');
+let contGet = document.getElementById('content');
+let imageGet = document.getElementById('image');
 
-const postContent = document.getElementById('post-content');// The main display container
+let postContent = document.getElementById('post-content');// The main display container
 
 // Load posts on page load
 const main = function () {
@@ -16,7 +16,7 @@ const main = function () {
     .then(response => response.json())
     .then(posts => displayPosts(posts))
     .catch(() => {
-      alert('Failed to load posts. Please try again later.');
+      alert('Posts could not load. Please try again later.');
     })
 };
 
@@ -27,7 +27,7 @@ function displayPosts(posts) {
   postList.innerHTML = '';
 
   posts.forEach(post => {
-    const item = document.createElement('div');
+    let item = document.createElement('div');
     item.textContent = post.title;
     item.classList.add('post-item');
     item.addEventListener('click', () => handlePostClick(post.id));
@@ -38,6 +38,7 @@ function displayPosts(posts) {
   if (posts.length > 0) {
     handlePostClick(posts[0].id);
   }
+  
 }
 
 //Display the selected posts on the main display area
@@ -47,7 +48,7 @@ function handlePostClick(id) {
     .then(post => {
       postContent.innerHTML = `
         <h2>${post.title}</h2>
-        <p><strong>By:</strong> ${post.author}</p>
+        <p><em>By:</em> ${post.author}</p>
         ${post.image ? `<img src="${post.image}" alt="${post.title}" style="max-width: 100%; margin: 1rem 0;">` : ''}
         <p>${post.content}</p>
         <button id="delete-btn" style="background-color: crimson; color: white; margin-top: 1rem;">Delete Post</button>
@@ -66,10 +67,10 @@ const addNewPostListener = function (e) {
   e.preventDefault(); // Prevent form from reloading the page
 
   const newPost = {
-    title: titleInput.value,
-    author: authorInput.value,
-    content: contentInput.value,
-    image: imageInput.value
+    title: titGet.value,
+    author: authGet.value,
+    content: contGet.value,
+    image: imageGet.value
   };
 
   // Basic validation to ensure the user fills the recomended fields
@@ -94,14 +95,14 @@ const addNewPostListener = function (e) {
       main(); // Fetch posts again to include the new one
     })
     .catch(() => {
-      alert('There was a problem saving your post.');
+      alert('There was an error saving your post.');
     });
 }
 
 //add the add new button functionality and toogle the new-post-form visibility
 newPostBtn.addEventListener('click', () => {
-  const isVisible = newPostForm.style.display === 'block';
-  newPostForm.style.display = isVisible ? 'none' : 'block';
+  let showForm = newPostForm.style.display === 'block';
+  newPostForm.style.display = showForm ? 'none' : 'block';
 });
 
 // submit a new blog post
@@ -117,13 +118,16 @@ function deletePost(id) {
     method: 'DELETE'
   })
     .then(response => {
-      if (!response.ok) throw new Error('Delete failed');
-      // Refresh post list
-      main();
-      postContent.innerHTML = '<p>Post deleted.</p>';
+      if (!response.ok){
+        alert('Failed to delete!');
+      } 
+      return;
+
+      postContent.innerHTML = '<p>The post was successfully deleted.</p>';
+      main();// Refresh post list
     })
     .catch(() => {
-      alert('Failed to delete the post.');
+      alert('Cannot delete the post.');
     });
 }
 
