@@ -7,7 +7,7 @@ The blogger can see the blog posts that have been published as they are displaye
 The blogger also has the option of deleting an individual blog post.
 The blogger has the advantage of having his/her first blog post being displayed on page load.
 
-This application runs on JSON server.
+This application runs with JSON server.
 To run the application;-
 First clone the repo and open the repo in VScode on your computer.
 Then start the JSON server using "json-server --watch db.json" command on the terminal.
